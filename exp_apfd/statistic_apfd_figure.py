@@ -112,8 +112,9 @@ def compute(csvname, abspath, outputdir="", to_csv=False):
 
     inputfile = abspath
     sortmodes = metric_conf[metric_index[metric]]
-
+    print(sortmodes)
     for sortmode in sortmodes:
+        print(sortmode)
         method = sortmode + "_" + os.path.basename(inputfile)
         outputfile = outputdir + method
 
@@ -162,7 +163,7 @@ def compute(csvname, abspath, outputdir="", to_csv=False):
                     if int(i.item[header_map["right"]]) == 0:
                         sum += 1
                     o.write(str(sum) + "\n")
-        return norm_apfd
+    # return norm_apfd
 
 
 if __name__ == '__main__':

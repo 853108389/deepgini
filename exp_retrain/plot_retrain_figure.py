@@ -115,6 +115,7 @@ def plot_curve_with_metric(name, model_name, metrics_arr=None, use_random=False,
     plt.legend()
     plt.title(model_conf.get_pair_name(name, model_name))
     plt.savefig('./res/fig/{}/{}/{}.pdf'.format(name, model_name, idx), bbox_inches='tight')
+    plt.savefig('./res/fig/{}/{}/{}.png'.format(name, model_name, idx), bbox_inches='tight')
     plt.close()
 
 
