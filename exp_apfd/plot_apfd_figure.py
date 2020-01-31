@@ -107,6 +107,9 @@ def plot_apfd(data_path, outputdir, use_adv, metrics_arr=None, idx=0,
     plt.legend()
     res_path = "{}{}.pdf".format(outputdir, idx)
     plt.savefig(res_path, bbox_inches='tight')
+    if idx == 1:
+        p = inputdir.split("/")[-2] + "_" + inputdir.split("/")[-3]
+        plt.savefig("../src/{}_{}.png".format(p, idx), bbox_inches='tight')
     plt.close()
 
 
