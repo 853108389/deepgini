@@ -1,22 +1,26 @@
 import glob
 import os
 import csv
+import random
 
 
 # 获得apfd figure 表格,用于图像绘制
 
-
 class Item:
-    def __init__(self, item, header, mode):
+    def __init__(self, item, header, mode, metric):
         self.item = item
         self.header = header
         self.mode = mode
+        self.metric = metric
 
     def get_order(self):
         order = int(self.item[self.header[self.mode]])
         if order == 0 and self.mode == "cam":
             if "ctm" in self.header:
-                order = 500000 + int(self.item[self.header["ctm"]])
+                if self.metric == "lsc" or self.metric == "dsc":
+                    order = 500000 + random.randint(1, 500000)
+                else:
+                    order = 500000 + int(self.item[self.header["ctm"]])
             else:
                 print("!!!!!! cam has order 0, but the sheet does not have ctm")
                 order = 500000
@@ -97,7 +101,48 @@ def worst(items):
     return calc_apfd(items)
 
 
-def compute(csvname, abspath, outputdir="", to_csv=False):
+def get_apfd(inputfile, method, sortmode, metric, verbose):
+    items = []
+    header_map = {}
+    csv_file = csv.reader(open(inputfile, 'r'))
+    i = 0
+    for line in csv_file:
+        if i == 0:
+            i += 1
+            j = 0
+            for x in line:
+                header_map[x] = j
+                j += 1
+            if sortmode not in header_map.keys():
+                print("=======================================")
+                print(method + " does not have mode " + sortmode)
+                print("=======================================")
+                return None, None, None
+            if "right" not in header_map.keys():
+                print("=======================================")
+                print(method + " does not col right")
+                print("=======================================")
+                return None, None, None
+        else:
+            items.append(Item(line, header_map, sortmode, metric))
+
+    best_apfd = best(items)
+    worst_apfd = worst(items)
+
+    items.sort(key=get_order)
+    orig_apfd = calc_apfd(items)
+
+    norm_apfd = (orig_apfd - worst_apfd) / (best_apfd - worst_apfd)
+    if verbose:
+        print("best : " + str(best_apfd))
+        print("worst : " + str(worst_apfd))
+
+        print(sortmode + " orig apfd : " + str(orig_apfd))
+        print(sortmode + " norm apfd : " + str(norm_apfd))
+    return norm_apfd, items, header_map
+
+
+def compute(csvname, abspath, outputdir="", to_csv=False, verbose=False):
     conf = csvname.split("_")
     dataset = conf[0]
     withadv = conf[1] == "adv"
@@ -107,54 +152,23 @@ def compute(csvname, abspath, outputdir="", to_csv=False):
     else:
         metric = conf[1].lower()
         metric_param = "_".join(conf[2:])
-
-    print("dataset: " + dataset + "; withadv: " + str(withadv) + "; metric: " + metric + "; param: " + metric_param)
+    if verbose:
+        print("dataset: " + dataset + "; withadv: " + str(withadv) + "; metric: " + metric + "; param: " + metric_param)
 
     inputfile = abspath
     sortmodes = metric_conf[metric_index[metric]]
-    print(sortmodes)
+    res = {"cam": "N/A", "ctm": "N/A"}
     for sortmode in sortmodes:
-        print(sortmode)
         method = sortmode + "_" + os.path.basename(inputfile)
         outputfile = outputdir + method
 
-        if metric == "kmnc" and sortmode == "cam":
+        # if metric == "kmnc" and sortmode == "cam" and withadv == True:
+        #     # continue
+        #     print(1)
+        norm_apfd, items, header_map = get_apfd(inputfile, method, sortmode, metric, verbose)
+        if norm_apfd is None:
             continue
-
-        items = []
-        header_map = {}
-        csv_file = csv.reader(open(inputfile, 'r'))
-        i = 0
-        for line in csv_file:
-            if i == 0:
-                i += 1
-                j = 0
-                for x in line:
-                    header_map[x] = j
-                    j += 1
-                if sortmode not in header_map.keys():
-                    print(method + " does not have mode " + sortmode)
-                    exit(0)
-                if "right" not in header_map.keys():
-                    print(method + " does not col right")
-                    exit(0)
-            else:
-                items.append(Item(line, header_map, sortmode))
-
-        best_apfd = best(items)
-        worst_apfd = worst(items)
-
-        items.sort(key=get_order)
-        orig_apfd = calc_apfd(items)
-
-        norm_apfd = (orig_apfd - worst_apfd) / (best_apfd - worst_apfd)
-
-        print("best : " + str(best_apfd))
-        print("worst : " + str(worst_apfd))
-
-        print(sortmode + " orig apfd : " + str(orig_apfd))
-        print(sortmode + " norm apfd : " + str(norm_apfd))
-
+        res[sortmode] = norm_apfd
         if to_csv:
             with open(outputfile, "w") as o:
                 o.write(method + "\n")
@@ -163,7 +177,7 @@ def compute(csvname, abspath, outputdir="", to_csv=False):
                     if int(i.item[header_map["right"]]) == 0:
                         sum += 1
                     o.write(str(sum) + "\n")
-    # return norm_apfd
+    return res
 
 
 if __name__ == '__main__':
@@ -183,5 +197,6 @@ if __name__ == '__main__':
                 if filename.endswith(".csv"):
                     abspath = os.path.join(inputdir, filename)
                     print("analyzing " + filename + "...")
-                    compute(filename, abspath, outputdir=outputdir, to_csv=True)
+                    res = compute(filename, abspath, outputdir=outputdir, to_csv=True, verbose=True)
+                    print(res)
                     print("")

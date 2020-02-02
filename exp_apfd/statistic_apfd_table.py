@@ -6,17 +6,22 @@ import model_conf
 from pandas import MultiIndex
 from exp_apfd.statistic_apfd_figure import compute
 
-
 # 绘制apfd表格
 # TODO: apfd函数
 
+ls = [
+    "nac_t_0", "nac_t_0.75", "nac",
+    "nbc_std_0", "nbc_std_0.5", "nbc_std_1", "nbc",
+    "snac_std_0", "snac_std_0.5", "snac_std_1", "snac",
+    "tknc_k_1", "tknc_k_2", "tknc_k_3", "tknc",
+    "lsc", "LSC", "dsc", "DSC",
+    "kmnc",
+    # "ssc", "svc", "vsc", "vvc",
+    "deep_metric", "deepgini"
+]
+
+
 def my_key(s: str):
-    ls = ["nac_t_0", "nac_t_0.75", "nac",
-          "kmnc",
-          "nbc_std_0", "nbc_std_0.5", "nbc_std_1", "nbc",
-          "snac_std_0", "snac_std_0.5", "snac_std_1", "snac",
-          "tknc_k_1", "tknc_k_2", "tknc_k_3", "tknc",
-          "lsc", "LSC", "dsc", "DSC", "ssc", "svc", "vsc", "vvc", "deep_metric", "deepgini"]
     res = [s.find(x) > -1 for x in ls]
     return res[::-1]
 
@@ -25,16 +30,16 @@ def my_key(s: str):
 def get_df(data):
     l = []
     l = l + list(zip(["NAC"] * 2, ["0", "0.75"]))
-    l = l + list(zip(["KMNC"] * 2, [1000, 10000]))
     l = l + list(zip(["NBC"] * 3, [0, 0.5, 1]))
     l = l + list(zip(["SNAC"] * 3, [0, 0.5, 1]))
     l = l + list(zip(["TKNC"] * 3, [1, 2, 3]))
     l = l + list(zip(["LSC"], ["(1000,100)"]))
     l = l + list(zip(["DSC"], ["(1000, 2)"]))
-    l = l + list(zip(["SSC"], ["-"]))
-    l = l + list(zip(["SVC"], ["-"]))
-    l = l + list(zip(["VSC"], ["-"]))
-    l = l + list(zip(["VVC"], ["-"]))
+    l = l + list(zip(["KMNC"] * 2, [1000, 10000]))
+    # l = l + list(zip(["SSC"], ["-"]))
+    # l = l + list(zip(["SVC"], ["-"]))
+    # l = l + list(zip(["VSC"], ["-"]))
+    # l = l + list(zip(["VVC"], ["-"]))
     l = l + list(zip(["DeepGini"], ["-"]))
 
     #  print(l)
@@ -60,9 +65,8 @@ def get_df(data):
 
 
 def get_data(use_time_key=True):
-    dir_list = ["output_mnist", "output_cifar", "output_fashion", "output_svhn"]
-    # dir_list = ["output_mnist"]
-    # base_path = "./result/statistic_data"
+    dir_list = ["output_mnist", "output_cifar", "output_fashion", "output_svhn"]  # TODO: stastic all data
+    # dir_list = ["output_mnist", ]
     base_path = "./all_output"
 
     writer = pd.ExcelWriter('./result/apfd.xlsx')
@@ -76,14 +80,14 @@ def get_data(use_time_key=True):
             model_name = os.path.basename(i)
             adv_data_list = sorted(glob.glob(i + "/*adv*"), key=my_key)
             data_list = sorted(list(set(glob.glob(i + "/*")) - set(adv_data_list)), key=my_key)
-            print(adv_data_list)
-            print(data_list)
+            # print(adv_data_list)
+            # print(data_list)
 
             path_arr = list(zip(data_list, adv_data_list))  # 每个模型下所有的文件
-            print(path_arr)
+            # print(path_arr)
 
-            print(model_name, path_arr)
-            print(len(path_arr))
+            print(model_name)
+            # print(len(path_arr))
             for inx, path in enumerate(path_arr):
                 row_arr = []
                 # print(path, len(path))
@@ -119,7 +123,7 @@ def get_data(use_time_key=True):
                     row_arr.append(max_c_num)
                     # and (df["ctm"] == 0).all()
                     if "ctm" in df.columns and "None" not in df["ctm"] and df["ctm"] is not None and not df[
-                        "ctm_time"].isnull().all():
+                        "ctm_time"].isnull().all() and key.find("LSC") == -1 and key.find("DSC") == -1:
                         ctm_time = abs(df.ctm_time.iloc[0])  # TODO:
                         if ctm_time < 1:
                             ctm_time = '{:.2f}'.format(ctm_time)
@@ -127,7 +131,9 @@ def get_data(use_time_key=True):
                             # ctm_time = int(round(ctm_time))
                             ctm_time = str(round(ctm_time))
                         # ctm_time = "time"
-                        ctm_apfd = apfd(df.right, df.ctm)
+                        res = compute(os.path.basename(key), key, to_csv=False)
+                        ctm_apfd = res["ctm"]
+                        # print("ctm_apfd=====,", ctm_apfd)
                         ctm_apfd = '{:.3f}'.format(ctm_apfd, )
                     else:
                         ctm_time = "N/A"
@@ -146,7 +152,8 @@ def get_data(use_time_key=True):
                             cam_time = str(round(cam_time))
                             # cam_time = int(round(cam_time))
                         # cam_time = "time"
-                        cam_apfd = apfd(df.right, df.cam)
+                        res = compute(os.path.basename(key), key, to_csv=False)
+                        cam_apfd = res["cam"]
                         cam_apfd = '{:.3f}'.format(cam_apfd)
                     else:
                         cam_time = "N/A"
@@ -161,22 +168,25 @@ def get_data(use_time_key=True):
                     print('总样本数:{}'.format(len(df)))
                     if dataset_name == model_conf.mnist and model_name == model_conf.LeNet5 and key.find("kmnc") > 0:
                         # kmnc 中mnist的LeNet5没有adv
-                        row_arr += ["T.O."] * 6
+                        row_arr += ["T.O.", "T.O.", "N/A", "N/A", "T.O.", "T.O."]
                         break
                 print(row_arr)
                 rows_arr.append(row_arr)
-                if inx == 2:
-                    if str(path).find("kmnc") < 0:  # 如果没有kmnc
-                        rows_arr.insert(-1, ["T.O."] * 12)  # 添加两行to
-                        rows_arr.insert(-1, ["T.O."] * 12)
-                    else:
-                        rows_arr.append(["T.O."] * 12)  # 最后一行添加一行to
                 if inx == len(path_arr) - 2:
-                    rows_arr.append(["...."] * 12)
-                    rows_arr.append(["...."] * 12)
-                    rows_arr.append(["...."] * 12)
-                    rows_arr.append(["...."] * 12)
+                    if str(path).find("kmnc") < 0:  # 如果没有kmnc
+                        rows_arr.insert(-1, ["T.O.", "T.O.", "N/A", "N/A", "T.O.", "T.O.", "T.O.", "T.O.", "N/A", "N/A",
+                                             "T.O.",
+                                             "T.O."])  # 添加两行to
+                        rows_arr.insert(-1, ["T.O.", "T.O.", "N/A", "N/A", "T.O.", "T.O.", "T.O.", "T.O.", "N/A", "N/A",
+                                             "T.O.",
+                                             "T.O."])
+                    else:
+                        # 最后一行添加一行to
+                        rows_arr.append(
+                            ["T.O.", "T.O.", "N/A", "N/A", "T.O.", "T.O.", "T.O.", "T.O.", "N/A", "N/A", "T.O.",
+                             "T.O."])
             table = np.array(rows_arr)
+            print(table)
             # print(rows_arr)
             print(table.shape)
             print("==================")

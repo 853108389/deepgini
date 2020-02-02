@@ -68,13 +68,15 @@ The data we use are mnist dataset, svhn dataset, fashion dataset, cifar10 datase
 
 ##### apfd
 
-![1](./src/1_1.png)
-
+![1](./src/ap1.png)
+![1](./src/ap2.png)
+![1](./src/ap3.png)
+![1](./src/ap4.png)
 
 
 ##### retrain 
 
-![2](./src/2_1.png)
+![2](./src/re1.png)
 
-![2](./src/2_2.png)
+![2](./src/re2.png)
 
