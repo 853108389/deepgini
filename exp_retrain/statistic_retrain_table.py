@@ -7,12 +7,17 @@ import model_conf
 
 
 def my_key(s: str):
-    ls = ["nac_t_0", "nac_t_0.75", "nac",
-          "kmnc",
-          "nbc_std_0", "nbc_std_0.5", "nbc_std_1", "nbc",
-          "snac_std_0", "snac_std_0.5", "snac_std_1", "snac",
-          "tknc_k_1", "tknc_k_2", "tknc_k_3", "tknc",
-          "lsc", "LSC", "dsc", "DSC", "ssc", "svc", "vsc", "vvc", "deep_metric", "deepgini"]
+    ls = [
+        "nac_t_0", "nac_t_0.75", "nac",
+        "nbc_std_0", "nbc_std_0.5", "nbc_std_1", "nbc",
+        "snac_std_0", "snac_std_0.5", "snac_std_1", "snac",
+        "tknc_k_1", "tknc_k_2", "tknc_k_3", "tknc",
+        "lsc", "LSC", "dsc", "DSC",
+        "kmnc",
+        # "ssc", "svc", "vsc", "vvc",
+        "deep_metric", "deepgini"
+    ]
+
     res = [s.find(x) > -1 for x in ls]
     return res[::-1]
 
@@ -90,7 +95,34 @@ def get_retrain_data(copy_res=False, statistic=False):
         sort_df = df[new_columns]  # 获得排序后df
         sort_df = sort_df.drop(df.tail(1).index)  # 删除最后一行
         sort_df = sort_df.set_index("ts", drop=True)
-        # TODO:
+        new_title = []
+        for pp in sort_df.columns.values:
+            if pp.find("random") > -1:
+                del sort_df[pp]
+                continue
+            if pp.find("deepgini") > -1:
+                l = "DeepGini"
+            else:
+                temp_arr = pp.split("_")
+                cover_method = temp_arr[-1]
+                metrics = temp_arr[0]
+                if pp.find("lsc") > -1:
+                    args = "(1000,100)"
+                    if pp.find("ctm") > -1:
+                        del sort_df[pp]
+                        continue
+                elif pp.find("dsc") > -1:
+                    args = "(1000,2)"
+                    if pp.find("ctm") > -1:
+                        del sort_df[pp]
+                        continue
+                else:
+                    print(temp_arr)
+                    args = "({})".format(temp_arr[2])
+                l = "{}{}-{}".format(metrics.upper(), args, cover_method.upper())
+            new_title.append(l)
+        sort_df.columns = new_title
+        # TODO: create new table
         # print(sort_df)
         # list_sorted = index_arr
         # # 对相关列进行自定义排序
