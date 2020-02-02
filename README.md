@@ -68,15 +68,10 @@ The data we use are mnist dataset, svhn dataset, fashion dataset, cifar10 datase
 
 ##### apfd
 
-![1](https://github.com/853108389/deepgini/blob/master/src/ap1.png)
-![1](https://github.com/853108389/deepgini/blob/master/src/ap2.png)
-![1](https://github.com/853108389/deepgini/blob/master/src/ap3.png)
-![1](https://github.com/853108389/deepgini/blob/master/src/ap4.png)
+![1](https://github.com/853108389/deepgini/blob/master/src/ap1.png)![1](https://github.com/853108389/deepgini/blob/master/src/ap2.png)![1](https://github.com/853108389/deepgini/blob/master/src/ap3.png)![1](https://github.com/853108389/deepgini/blob/master/src/ap4.png)
 
 
 ##### retrain 
 
-![2](https://github.com/853108389/deepgini/blob/master/src/re1.png)
-
-![2](https://github.com/853108389/deepgini/blob/master/src/re2.png)
+![2](https://github.com/853108389/deepgini/blob/master/src/re1.png)![2](https://github.com/853108389/deepgini/blob/master/src/re2.png)
 
