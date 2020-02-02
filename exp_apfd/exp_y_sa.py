@@ -133,7 +133,6 @@ def gen_data_cifar(model_name, use_adv=True, deepxplore=False):
 
 def gen_data_fashion(model_name, use_adv=True, deepxplore=False):
     model_path = model_conf.get_model_path(model_conf.fashion, model_name)
-    path = './fashion-mnist/data/fashion'
     (X_train, Y_train), (X_test, Y_test) = fashion_mnist.load_data()  ### modify
     X_train = X_train.astype('float32').reshape(-1, 28, 28, 1)
     X_test = X_test.astype('float32').reshape(-1, 28, 28, 1)

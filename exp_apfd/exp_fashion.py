@@ -11,8 +11,6 @@ import sys
 import model_conf
 from keras.datasets import fashion_mnist  ### modify
 
-sys.path.append('./fashion-mnist/utils')
-
 import time
 
 

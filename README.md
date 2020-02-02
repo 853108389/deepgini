@@ -53,7 +53,7 @@ conda install tqdm
 
 ## Data file structure
 
-This data contains 5 folders,`data`,`fashion-mnist`,`model`,`adv_image`,`all_output`.
+This data contains 3 folders,`data`,`model`,`adv_image`.
 The data we use are mnist dataset, svhn dataset, fashion dataset, cifar10 dataset.
 
 `data`:This folder mainly contains training data and test data of the svhn data set.

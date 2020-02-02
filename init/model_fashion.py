@@ -23,7 +23,6 @@ import sys
 from keras.applications.vgg16 import VGG16
 from keras import applications
 
-sys.path.append('./fashion-mnist/utils')
 
 from keras.datasets import fashion_mnist  ### modify
 
