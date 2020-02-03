@@ -5,6 +5,7 @@ DeepGINI is a test data sorting technology for deep learning. This warehouse is 
 ------
 
 ## How to run the code
+### environment
 
 ```
 scikit-learn>=0.19.0
@@ -15,6 +16,7 @@ tensorflow>=1.13.1
 tqdm>=4.23.0
 foolbox==1.7.0
 ```
+run this code to install requirment environment
 
 ```
 conda install -c fragcolor cuda10.0
@@ -31,6 +33,35 @@ pip install --upgrade foolbox==1.7.0
 conda install tqdm
 ```
 
+### execute
+
+```
+run apfd exp
+experiment
+python ./exp_apfd/exp_cifar.py
+python ./exp_apfd/exp_fashion.py
+python ./exp_apfd/exp_mnist.py
+python ./exp_apfd/exp_svhn.py
+python ./exp_apfd/exp_y_sa.py
+
+plot figure
+python ./exp_apfd/statistic_apfd_figure.py
+python ./exp_apfd/plot_apfd_figure.py
+
+get table
+python ./exp_apfd/statistic_apfd_table.py
+
+run retrain exp
+experiment
+python ./exp_retrain/exp_retrain.py
+
+plot figure
+python ./exp_retrain/plot_retrain_figure.py
+
+get table
+python ./exp_retrain/statistic_retrain_table.py
+```
+you can run init to get model and advs,but it is slow, the model and advs can download in this link:
 
 
 ------
