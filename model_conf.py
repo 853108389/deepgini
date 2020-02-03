@@ -31,19 +31,19 @@ trained_dic = {
     "cifar_vgg16": "./model_retrain/model/cifar/model_cifar_vgg16.hdf5",
 }
 
-retrained_th_dic = {
-    "mnist_LeNet5": "./model_retrain/model/mnist/{}/model_mnist_ts_{}.hdf5",
-    "mnist_LeNet1": "./model_retrain/model/mnist/{}/model_mnist_LeNet1_ts_{}.hdf5",
-
-    "fashion_resNet20": "./model_retrain/model/fashion/{}/model_fashion_resNet20_ts_{}.hdf5",
-    "fashion_LeNet1": "./model_retrain/model/fashion/{}/model_fashion_LeNet1_ts_{}.hdf5",
-
-    "svhn_LeNet5": './model_retrain/model/svhn/{}/model_svhn_ts_{}.hdf5',
-    "svhn_vgg16": './model_retrain/model/svhn/{}/model_svhn_vgg16_ts_{}.hdf5',
-
-    "cifar_resNet20": './model_retrain/model/cifar/{}/model_cifar_ts_{}.hdf5',
-    "cifar_vgg16": './model_retrain/model/cifar/{}/model_cifar_vgg16_ts_{}.hdf5',
-}
+# retrained_th_dic = {
+#     "mnist_LeNet5": "./model_retrain/model/mnist/{}/model_mnist_ts_{}.hdf5",
+#     "mnist_LeNet1": "./model_retrain/model/mnist/{}/model_mnist_LeNet1_ts_{}.hdf5",
+#
+#     "fashion_resNet20": "./model_retrain/model/fashion/{}/model_fashion_resNet20_ts_{}.hdf5",
+#     "fashion_LeNet1": "./model_retrain/model/fashion/{}/model_fashion_LeNet1_ts_{}.hdf5",
+#
+#     "svhn_LeNet5": './model_retrain/model/svhn/{}/model_svhn_ts_{}.hdf5',
+#     "svhn_vgg16": './model_retrain/model/svhn/{}/model_svhn_vgg16_ts_{}.hdf5',
+#
+#     "cifar_resNet20": './model_retrain/model/cifar/{}/model_cifar_ts_{}.hdf5',
+#     "cifar_vgg16": './model_retrain/model/cifar/{}/model_cifar_vgg16_ts_{}.hdf5',
+# }
 
 name_list = [mnist, fashion, svhn, cifar10]
 model_data = {
