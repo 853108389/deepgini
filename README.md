@@ -62,7 +62,8 @@ get table
 python ./exp_retrain/statistic_retrain_table.py
 ```
 you can run init to get model and advs,but it is slow, the model and advs can download in this link:
-
+链接：https://pan.baidu.com/s/1iBc_uTp-jFJzekvkWnZsmg
+提取码：idsc
 
 ------
 
