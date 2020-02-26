@@ -660,56 +660,55 @@ def main(dataset_name, model_name):
     # deep_metric = "deepgini2"  # 采样,没称权重,
     # kwargs = {}
     # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # deep_metric = "deepgini"
-    # kwargs = {}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    #
-    # # # #
-    # deep_metric = "nac"
-    # kwargs = {"t": 0}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # deep_metric = "nac"
-    # kwargs = {"t": 0.75}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "deepgini"
+    kwargs = {}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+
     # # #
-    # deep_metric = "tknc"
-    # kwargs = {"k": 1}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # deep_metric = "tknc"
-    # kwargs = {"k": 2}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # deep_metric = "tknc"
-    # kwargs = {"k": 3}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "nac"
+    kwargs = {"t": 0}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "nac"
+    kwargs = {"t": 0.75}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
     # #
-    # deep_metric = "nbc"
-    # kwargs = {"std": 0}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # deep_metric = "nbc"
-    # kwargs = {"std": 0.5}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # deep_metric = "nbc"
-    # kwargs = {"std": 1}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # # #
-    # deep_metric = "snac"
-    # kwargs = {"std": 0}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # deep_metric = "snac"
-    # kwargs = {"std": 0.5}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    if dataset_name == model_conf.cifar10:
-        deep_metric = "snac"
-        kwargs = {"std": 1}
-        exec(dataset_name, model_name, deep_metric, **kwargs)
-    # #
-    # deep_metric = "lsc"
-    # kwargs = {"index": -1}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
-    # deep_metric = "dsc"
-    # kwargs = {}
-    # exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "tknc"
+    kwargs = {"k": 1}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "tknc"
+    kwargs = {"k": 2}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "tknc"
+    kwargs = {"k": 3}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
     #
+    deep_metric = "nbc"
+    kwargs = {"std": 0}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "nbc"
+    kwargs = {"std": 0.5}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "nbc"
+    kwargs = {"std": 1}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    # #
+    deep_metric = "snac"
+    kwargs = {"std": 0}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "snac"
+    kwargs = {"std": 0.5}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "snac"
+    kwargs = {"std": 1}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    #
+    deep_metric = "lsc"
+    kwargs = {"index": -1}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+    deep_metric = "dsc"
+    kwargs = {}
+    exec(dataset_name, model_name, deep_metric, **kwargs)
+
     # deep_metric = "random"
     # kwargs = {}
     # exec(dataset_name, model_name, deep_metric, **kwargs)
@@ -739,7 +738,7 @@ def statistic_res(name, model_name):
     # df_adv.to_csv("{}{}_adv.csv".format("./model_retrain/res/", model_conf.get_pair_name(name, model_name)))
 
 
-# 初始化文件夹和模型
+# 初始化文件夹
 def init():
     model_data_dict = {
         model_conf.mnist: [model_conf.LeNet5, model_conf.LeNet1],
@@ -765,7 +764,6 @@ def init():
         if not os.path.exists(x):
             os.makedirs(x)
     print("init  dir over")
-    print("init model")
 
 
 if __name__ == '__main__':
