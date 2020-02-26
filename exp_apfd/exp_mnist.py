@@ -215,25 +215,25 @@ def exec(model_name):
     pass
     dic = {}
 
-    # start = time.time()
-    # exp_nac(model_name, use_adv=False, t=0)
-    # end = time.time()
-    # dic['mnist_nac_t_0'] = (start - end)
-    #
-    # start = time.time()
-    # exp_nac(model_name, use_adv=True, t=0)
-    # end = time.time()
-    # dic['mnist_adv_nac_t_0'] = (start - end)
-    #
-    # start = time.time()
-    # exp_nac(model_name, use_adv=False, t=0.75)
-    # end = time.time()
-    # dic['mnist_nac_t_0.75'] = (start - end)
-    #
-    # start = time.time()
-    # exp_nac(model_name, use_adv=True, t=0.75)
-    # end = time.time()
-    # dic['mnist_adv_nac_t_0.75'] = (start - end)
+    start = time.time()
+    exp_nac(model_name, use_adv=False, t=0)
+    end = time.time()
+    dic['mnist_nac_t_0'] = (start - end)
+
+    start = time.time()
+    exp_nac(model_name, use_adv=True, t=0)
+    end = time.time()
+    dic['mnist_adv_nac_t_0'] = (start - end)
+
+    start = time.time()
+    exp_nac(model_name, use_adv=False, t=0.75)
+    end = time.time()
+    dic['mnist_nac_t_0.75'] = (start - end)
+
+    start = time.time()
+    exp_nac(model_name, use_adv=True, t=0.75)
+    end = time.time()
+    dic['mnist_adv_nac_t_0.75'] = (start - end)
 
     # exp(model_name, coverage='kmnc', use_adv=False, k_bins=1000)
     # exp(coverage='kmnc', use_adv=False, k_bins=10000)
@@ -243,95 +243,95 @@ def exec(model_name):
     exp_deep_metric(model_name, use_adv=False)
     exp_deep_metric(model_name, use_adv=True)
     #
-    # start = time.time()
-    # exp(model_name, coverage='tknc', use_adv=False, k=1)
-    # end = time.time()
-    # dic['mnist_tknc_k_1'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='tknc', use_adv=False, k=2)
-    # end = time.time()
-    # dic['mnist_tknc_k_2'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='tknc', use_adv=False, k=3)
-    # end = time.time()
-    # dic['mnist_tknc_k_3'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='tknc', use_adv=True, k=1)
-    # end = time.time()
-    # dic['mnist_adv_tknc_k_1'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='tknc', use_adv=True, k=2)
-    # end = time.time()
-    # dic['mnist_adv_tknc_k_2'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='tknc', use_adv=True, k=3)
-    # end = time.time()
-    # dic['mnist_adv_tknc_k_3'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='nbc', use_adv=False, std=0.5)
-    # end = time.time()
-    # dic['mnist_nbc_std_0.5'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='nbc', use_adv=False, std=1)
-    # end = time.time()
-    # dic['mnist_nbc_std_1'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='nbc', use_adv=False, std=0)
-    # end = time.time()
-    # dic['mnist_nbc_std_0'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='nbc', use_adv=True, std=0.5)
-    # end = time.time()
-    # dic['mnist_adv_nbc_std_0.5'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='nbc', use_adv=True, std=1)
-    # end = time.time()
-    # dic['mnist_adv_nbc_std_1'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='nbc', use_adv=True, std=0)
-    # end = time.time()
-    # dic['mnist_adv_nbc_std_0'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='snac', use_adv=False, std=0.5)
-    # end = time.time()
-    # dic['mnist_snac_std_0.5'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='snac', use_adv=False, std=1)
-    # end = time.time()
-    # dic['mnist_snac_std_1'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='snac', use_adv=False, std=0)
-    # end = time.time()
-    # dic['mnist_snac_std_0'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='snac', use_adv=True, std=0.5)
-    # end = time.time()
-    # dic['mnist_adv_snac_std_0.5'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='snac', use_adv=True, std=1)
-    # end = time.time()
-    # dic['mnist_adv_snac_std_1'] = (start - end)
-    #
-    # start = time.time()
-    # exp(model_name, coverage='snac', use_adv=True, std=0)
-    # end = time.time()
-    # dic['mnist_adv_snac_std_0'] = (start - end)
+    start = time.time()
+    exp(model_name, coverage='tknc', use_adv=False, k=1)
+    end = time.time()
+    dic['mnist_tknc_k_1'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='tknc', use_adv=False, k=2)
+    end = time.time()
+    dic['mnist_tknc_k_2'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='tknc', use_adv=False, k=3)
+    end = time.time()
+    dic['mnist_tknc_k_3'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='tknc', use_adv=True, k=1)
+    end = time.time()
+    dic['mnist_adv_tknc_k_1'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='tknc', use_adv=True, k=2)
+    end = time.time()
+    dic['mnist_adv_tknc_k_2'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='tknc', use_adv=True, k=3)
+    end = time.time()
+    dic['mnist_adv_tknc_k_3'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='nbc', use_adv=False, std=0.5)
+    end = time.time()
+    dic['mnist_nbc_std_0.5'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='nbc', use_adv=False, std=1)
+    end = time.time()
+    dic['mnist_nbc_std_1'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='nbc', use_adv=False, std=0)
+    end = time.time()
+    dic['mnist_nbc_std_0'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='nbc', use_adv=True, std=0.5)
+    end = time.time()
+    dic['mnist_adv_nbc_std_0.5'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='nbc', use_adv=True, std=1)
+    end = time.time()
+    dic['mnist_adv_nbc_std_1'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='nbc', use_adv=True, std=0)
+    end = time.time()
+    dic['mnist_adv_nbc_std_0'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='snac', use_adv=False, std=0.5)
+    end = time.time()
+    dic['mnist_snac_std_0.5'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='snac', use_adv=False, std=1)
+    end = time.time()
+    dic['mnist_snac_std_1'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='snac', use_adv=False, std=0)
+    end = time.time()
+    dic['mnist_snac_std_0'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='snac', use_adv=True, std=0.5)
+    end = time.time()
+    dic['mnist_adv_snac_std_0.5'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='snac', use_adv=True, std=1)
+    end = time.time()
+    dic['mnist_adv_snac_std_1'] = (start - end)
+
+    start = time.time()
+    exp(model_name, coverage='snac', use_adv=True, std=0)
+    end = time.time()
+    dic['mnist_adv_snac_std_0'] = (start - end)
 
 
 if __name__ == '__main__':
