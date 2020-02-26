@@ -160,8 +160,8 @@ def generate_adv_sample(s, model_path, dataset, attack):
         adv = sample_func(model_path, label=i, attack=attack)
         temp_image = adv
         temp_label = i * np.ones(len(adv))
-        np.save('./temp/{}_{}_image{}'.format(s, attack, i), image)
-        np.save('./temp/{}_{}_label{}'.format(s, attack, i), label)
+        # np.save('./temp/{}_{}_image{}'.format(s, attack, i), image)
+        # np.save('./temp/{}_{}_label{}'.format(s, attack, i), label)
         image.append(temp_image.copy())
         label.append(temp_label.copy())
         print("adv 个数:", i, len(temp_image))
