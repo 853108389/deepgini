@@ -61,10 +61,12 @@ python ./exp_retrain/plot_retrain_figure.py
 get table
 python ./exp_retrain/statistic_retrain_table.py
 ```
+### download model and adv
 you can run init to get model and advs,but it is slow, the model and advs can download in this link:
-链接：https://pan.baidu.com/s/1iBc_uTp-jFJzekvkWnZsmg
-提取码：idsc
-
+```
+https://pan.baidu.com/s/1iBc_uTp-jFJzekvkWnZsmg
+idsc
+```
 ------
 
 ## File code structure
