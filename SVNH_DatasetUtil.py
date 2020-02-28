@@ -158,7 +158,6 @@ def load_data():
 
 if __name__ == "__main__":
 
-
     # train_X, train_Y, eval_X, eval_Y, test_X, test_Y = load_svhn_data(train_path = train_path,
     #                                                                   test_path = test_path,
     #                                                                   extra_path = extra_path,
