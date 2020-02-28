@@ -101,7 +101,6 @@ The data we use are mnist dataset, svhn dataset, fashion dataset, cifar10 datase
 
 `adv_image`:We use fgsm, jsma, cw, and bim to generate a adversarial sample for the corresponding dataset. The data structure is ndarray in numpy, which is stored as .npy file using python's pickle method.
 
-`
 
 ## Experimental result
 
