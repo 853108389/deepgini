@@ -65,8 +65,8 @@ def get_df(data):
 
 
 def get_data(use_time_key=True):
-    dir_list = ["output_mnist", "output_cifar", "output_fashion", "output_svhn"]  # TODO: stastic all data
-    # dir_list = ["output_mnist", ]
+    dir_list = ["output_mnist", "output_cifar", "output_fashion", "output_svhn"]
+    # dir_list = ["output_svhn", ]
     base_path = "./all_output"
 
     writer = pd.ExcelWriter('./result/apfd.xlsx')
