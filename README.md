@@ -36,6 +36,9 @@ conda install tqdm
 ### execute
 
 ```
+init
+python ./init.py
+
 run apfd exp
 experiment
 python ./exp_apfd/exp_cifar.py
@@ -75,13 +78,15 @@ idsc
 
 `exp_retrain` is a folder contains the experiment of retrain
 
-`init`  is a folder contains the initialization of models and adv examples
-
 `metrics.py` is a file that sorts the samples using different overlay methods.
 
 `model_conf.py`  is a file that records model configuration
 
 `SVNH_DatasetUtil.py` is a file  used to  load svnh data
+
+`model_*.py` are fils used to generate the model. You can download the model derectly
+
+`generate_adv.py`  is a file  used to generate the advs.. You can download the advs derectly
 
 ------
 
