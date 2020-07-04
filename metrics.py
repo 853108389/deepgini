@@ -860,7 +860,7 @@ class MCDC(object):
         self.n = len(layers)  # 层数
         self.neuron_num_arr = []  # 每层神经元的个数
         self.neuron_pair_num = 0  # 神经元对的个数
-        self.case_dict = defaultdict(set)  # 存放用例与神经元的关系  #TODO: 改成直接存下标,不存三元组
+        self.case_dict = defaultdict(set)  # 存放用例与神经元的关系
         self.neuron_con_arr = [0]  # 神经元的连接数,第一层的连接数是0,因此写0
         self.neuron_map_arr = []  # 神经元具体的连接情况
         self.neuron_activate_test = []  # shape(层数,)  里面的list, shape(测试集个数,神经元个数)
@@ -1013,7 +1013,7 @@ class MCDC(object):
 
         return sum / self.neuron_pair_num
 
-    # modify TODO:还没改,如果要改就改一下
+    # modify TODO:need modify,
     def svc(self, d_vc=None):
         #################################################################################################
         # 1. 这次我们要在遍历值数组的同时,统计出神经元对与用例的关系

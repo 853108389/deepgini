@@ -16,7 +16,7 @@ def test(test):
         temp = neuron_num_arr[i] * neuron_num_arr[i + 1]  # 每相邻两层的神经元相乘,计算出连接数,也就是神经元对数
         neuron_pair_num += temp
         neuron_con_arr.append(temp)
-        neuron_map_arr.append(np.zeros((neuron_num_arr[i], neuron_num_arr[i + 1])))  # TODO
+        neuron_map_arr.append(np.zeros((neuron_num_arr[i], neuron_num_arr[i + 1])))
 
     # neuron_activate_test = []  # shape(层数,)  里面的list, shape(测试集个数,神经元个数)
     neuron_activate_test = test

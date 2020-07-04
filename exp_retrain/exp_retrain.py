@@ -310,7 +310,7 @@ def df_process(df, ascending=True):
     n = df.shape[0]
     cols_arr = list(df)
     df_dict = {}
-    if "cam" in cols_arr and (df["cam"] != 0).any() and len(df["cam"]) != 0:  # TODO: all 和 any
+    if "cam" in cols_arr and (df["cam"] != 0).any() and len(df["cam"]) != 0:
         # 按照cam大小排序
         df_case_rank = df.sort_values(axis=0, by=["cam"], ascending=ascending)
         # 重新设置索引

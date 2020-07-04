@@ -108,7 +108,7 @@ def exp(model_name, coverage, use_adv, std=0.0, k=1, k_bins=1000):  #
     elif coverage == 'tknc':
         # 只能贪心排
         # 1 2 3
-        start = time.time()  # TODO: 所有tknc的实验和deepgini重做  先重做: mnist 的所有都要重新做
+        start = time.time()
         tk = metrics.tknc(test, input, layers, k=k)
         rank_lst = tk.rank(test)
         end = time.time()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-# TODO: 重命名为sa_exp,同时将执行脚本exc_main.py内容也修改为sa_exp
+
 import SVNH_DatasetUtil
 import pandas as pd
 from keras.datasets import mnist, cifar10, fashion_mnist

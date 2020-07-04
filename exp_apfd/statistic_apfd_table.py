@@ -7,7 +7,6 @@ from pandas import MultiIndex
 from exp_apfd.statistic_apfd_figure import compute
 
 # 绘制apfd表格
-# TODO: apfd函数
 
 ls = [
     "nac_t_0", "nac_t_0.75", "nac",
@@ -124,7 +123,7 @@ def get_data(use_time_key=True):
                     # and (df["ctm"] == 0).all()
                     if "ctm" in df.columns and "None" not in df["ctm"] and df["ctm"] is not None and not df[
                         "ctm_time"].isnull().all() and key.find("LSC") == -1 and key.find("DSC") == -1:
-                        ctm_time = abs(df.ctm_time.iloc[0])  # TODO:
+                        ctm_time = abs(df.ctm_time.iloc[0])
                         if ctm_time < 1:
                             ctm_time = '{:.2f}'.format(ctm_time)
                         else:

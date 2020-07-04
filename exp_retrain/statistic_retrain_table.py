@@ -22,7 +22,7 @@ def my_key(s: str):
     return res[::-1]
 
 
-# TODO: 打印retrain表格
+# 打印retrain表格
 def get_retrain_data(copy_res=False, statistic=False):
     # 表格打印
     def statistic_res(name, model_name):
@@ -122,7 +122,7 @@ def get_retrain_data(copy_res=False, statistic=False):
                 l = "{}{}-{}".format(metrics.upper(), args, cover_method.upper())
             new_title.append(l)
         sort_df.columns = new_title
-        # TODO: create new table
+
         # print(sort_df)
         # list_sorted = index_arr
         # # 对相关列进行自定义排序

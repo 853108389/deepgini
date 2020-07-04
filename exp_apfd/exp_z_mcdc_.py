@@ -12,7 +12,7 @@ import numpy as np
 
 # TODO:  mcdc can not provide its useful
 
-# TODO: 删掉了重复的两层model.layers[8].output
+
 def gen_data_mnist(use_adv=False, deepxplore=False, ):
     (X_train, Y_train), (X_test, Y_test) = mnist.load_data()  # 28*28
     X_train = X_train.astype('float32').reshape(-1, 28, 28, 1)
