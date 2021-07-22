@@ -31,6 +31,7 @@ conda install pandas
 conda install scikit-learn
 pip install --upgrade foolbox==1.7.0
 conda install tqdm
+conda install matplotlib
 ```
 
 ### execute
