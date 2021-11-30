@@ -22,8 +22,8 @@ def adv_func(x, y, model_path, dataset='mnist', attack='fgsm'):
     model = load_model(model_path)
     foolmodel = foolbox.models.KerasModel(model, bounds=(0, 1), preprocessing=(0, 1))
     if attack == 'cw':
-        # attack=foolbox.attacks.IterativeGradientAttack(foolmodel)
-        attack = foolbox.attacks.L2BasicIterativeAttack(foolmodel)
+        # attack = foolbox.attacks.L2BasicIterativeAttack(foolmodel)
+        attack = foolbox.attacks.CarliniWagnerL2Attack(foolmodel)
     elif attack == 'fgsm':
         # FGSM
         attack = foolbox.attacks.GradientSignAttack(foolmodel)
